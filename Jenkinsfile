@@ -26,11 +26,12 @@ pipeline {
 		}
 		}
 		stage('docker build and push'){
-		    steps{
-		        sh 'printenv'
-		        sh 'docker build -t adarshkumar410/numeric-application:"$GIT_COMMIT" .'
-		        sh 'docker push adarshkumar410/numeric-application:"$GIT_COMMIT"'
-		    }
-		}
+                    steps{
+                        sh 'printenv'
+                        // Changed external quotes to double quotes, removed unnecessary inner quotes
+                        sh "docker build -t adarshkumar410/numeric-application:${GIT_COMMIT} ."
+                        sh "docker push adarshkumar410/numeric-application:${GIT_COMMIT}"
+                    }
+                }
     }
 }
