@@ -1,19 +1,14 @@
 pipeline {
-  agent any
+    agent any
 
-  stages {
-      stage('Build Artifact') {
+    stages {
+        stage('Build Artifact') {
             steps {
-              sh "mvn clean package -DskipTests=true"
-              archive 'target/*.jar'
+                sh "mvn clean package -DskipTests=true"
+                archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
             }
         }
 
-//        stage('Unit Test') {
-//                    steps {
-//                     sh "mvn test"
-//                   }
-//               }
         stage('Unit Tests - JUnit and Jacoco'){
             steps {
                 sh 'mvn test'
@@ -23,19 +18,16 @@ pipeline {
                     junit 'target/surefire-reports/*.xml'
                     jacoco execPattern: 'target/jacoco.exec'
                 }
-		}
-		}
-//	}
-//}
- 		stage('docker build and push'){
-                     steps{
-//                      withDockerRegistry([credentialsId:"Docker-hub", url:""]){
-                        sh 'printenv'
-//                         // Changed external quotes to double quotes, removed unnecessary inner quotes
-                        sh "docker build -t adarshkumar410/numeric-application:${GIT_COMMIT} ."
-//                         sh "docker push adarshkumar410/numeric-application:${GIT_COMMIT}"
-//                    }
-                 }
-                }
-     }
- }
+            }
+        }
+
+        stage('docker build and push'){
+            steps {
+                sh 'printenv'
+                sh "docker build -t adarshkumar410/numeric-application:${env.GIT_COMMIT} ."
+                // Uncomment below when you restore your withDockerRegistry block
+                // sh "docker push adarshkumar410/numeric-application:${env.GIT_COMMIT}"
+            }
+        }
+    }
+}
