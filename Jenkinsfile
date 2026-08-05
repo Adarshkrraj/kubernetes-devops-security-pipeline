@@ -23,10 +23,13 @@ pipeline {
 
         stage('docker build and push'){
             steps {
-                sh 'printenv'
-                sh "docker build -t adarshkumar410/numeric-application:${env.GIT_COMMIT} ."
-                // Uncomment below when you restore your withDockerRegistry block
-                sh "docker push adarshkumar410/numeric-application:${env.GIT_COMMIT}"
+                withDockerRegistry([credentialsId:"Docker-hub", url:""]){
+                    sh 'printenv'
+                    sh "docker build -t adarshkumar410/numeric-application:${env.GIT_COMMIT} ."
+                    // Uncomment below when you restore your withDockerRegistry block
+                    sh "docker push adarshkumar410/numeric-application:${env.GIT_COMMIT}"
+                }
+
             }
         }
     }
