@@ -27,7 +27,7 @@ pipeline {
             }
                 steps {
 
-                    withSonarQubeEnv('sonarqube') { //server added s
+                    withSonarQubeEnv('sonarqube') { //server added set
                         sh "mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Numeric-application -Dsonar.projectName='Numeric-application'"
                     }
                 }
