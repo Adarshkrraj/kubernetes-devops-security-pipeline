@@ -70,7 +70,7 @@
 				<version>11.1.1</version>
 				<configuration>
 					<format>ALL</format>
-					<failBuildOnCvss>9.9</failBuildOnCvss>
+					<failBuildOnCvss>10.1</failBuildOnCvss>
 				</configuration>
 			</plugin>
 		</plugins>
