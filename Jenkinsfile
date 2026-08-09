@@ -23,7 +23,7 @@ pipeline {
 
         stage('Sonarqube - SAST') {
             tools   {
-                maven 'maven-install'
+                maven 'Maven-install'
             }
                 steps {
 
