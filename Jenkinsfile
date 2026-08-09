@@ -32,7 +32,7 @@ pipeline {
                     }
                 }
             }
-        stage("Quality Gate") {
+        stage("Quality Gate") { //set to default
             steps {
                 timeout(time: 2, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
