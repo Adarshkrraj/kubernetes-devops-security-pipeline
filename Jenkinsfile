@@ -45,7 +45,7 @@ pipeline {
                 maven 'Maven-install' // Forces Jenkins to use your newer Maven installation
                         }
             steps{
-                sh "mvn dependency-check:check -DnvdDataDisabled=true DossindexAnalyzerEnabled=false"
+                sh "mvn dependency-check:check -DnvdDataDisabled=true -DossindexAnalyzerEnabled=false"
             }
             post{
                 always{
