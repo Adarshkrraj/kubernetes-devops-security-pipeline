@@ -64,6 +64,15 @@
 				</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.owasp</groupId>
+				<artifactId>dependency-check-parent</artifactId>
+				<version>13.0.0</version>
+				<configuration>
+					<format>ALL</format>
+					<failBuildOnCvss>5</failBuildOnCvss>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
