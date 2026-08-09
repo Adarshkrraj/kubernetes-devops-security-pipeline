@@ -23,12 +23,12 @@ pipeline {
 
         stage('Sonarqube - SAST') {
             tools   {
-            def mvn = tool 'maven-install';
+                maven 'maven-install'
             }
                 steps {
 
-                    withSonarQubeEnv() {
-                        sh "${mvn}/bin/mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Numeric-application -Dsonar.projectName='Numeric-application'"
+                    withSonarQubeEnv('sonarqube') {
+                        sh "mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Numeric-application -Dsonar.projectName='Numeric-application'"
                     }
                 }
             }
